@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antony Joshi | Portfolio</title>
+  <style>
+    :root {
+      --bg: #090909;
+      --surface: #111111;
+      --text: #f3f3f3;
+      --muted: #c7c7c7;
+      --accent: #e63946;
+      --accent-soft: rgba(230, 57, 70, 0.12);
+      --border: rgba(255, 255, 255, 0.08);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, rgba(230, 57, 70, 0.14), transparent 32%),
+                  linear-gradient(180deg, #0b0b0b 0%, #090909 100%);
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+
+    .page-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 20px 40px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 1.4rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .brand p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 16px;
+      font-size: 0.95rem;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      display: grid;
+      gap: 28px;
+      padding: 64px 0 36px;
+    }
+
+    .hero-content {
+      max-width: 680px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .hero-content h2 {
+      margin: 22px 0 18px;
+      font-size: clamp(2.6rem, 4vw, 4rem);
+      line-height: 0.98;
+    }
+
+    .hero-content p {
+      margin: 0;
+      line-height: 1.8;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .button-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .button-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.24);
+    }
+
+    .hero-card h3 {
+      margin: 0 0 14px;
+      font-size: 1.2rem;
+    }
+
+    .hero-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    section {
+      margin-top: 48px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 1.55rem;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 720px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 28px;
+    }
+
+    .card {
+      padding: 28px;
+      border-radius: 26px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    .info-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .info-item {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.02);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .info-item strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+    }
+
+    .skill-card {
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .skill-card h4 {
+      margin: 0 0 10px;
+    }
+
+    .skill-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+      min-height: 220px;
+    }
+
+    .project-card h4 {
+      margin: 0 0 12px;
+      color: var(--text);
+    }
+
+    .project-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .contact-card {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    .contact-box {
+      padding: 28px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .contact-box h3 {
+      margin-top: 0;
+    }
+
+    .contact-box p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .contact-details {
+      display: grid;
+      gap: 14px;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.96rem;
+      color: var(--muted);
+    }
+
+    .contact-detail strong {
+      color: var(--text);
+      min-width: 80px;
+      display: inline-block;
+    }
+
+    .footer {
+      margin-top: 56px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 840px) {
+      .about-grid,
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .hero {
+        padding-top: 40px;
+      }
+      .hero-content h2 {
+        font-size: 2.6rem;
+      }
+      nav {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <header>
+      <div class="brand">
+        <h1>Antony Joshi</h1>
+        <p>Computer Science Student · Technology Enthusiast</p>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <span class="eyebrow">Student Portfolio</span>
+        <h2>Hi, I’m Antony Joshi — building smart solutions through curiosity and continuous learning.</h2>
+        <p>I am a Computer Science student at GISMA University of Applied Sciences, developing software and web skills with HTML, Python, and SQL. I enjoy exploring new tools, solving problems, and creating meaningful solutions that support growth and innovation.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#contact">Contact Me</a>
+          <a class="button button-secondary" href="#about">Learn More</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Academic Focus</h3>
+        <p>Pursuing B.Sc. in Computer Science at GISMA University of Applied Sciences, expected graduation in 2028. Focus areas include programming, software development, and emerging technologies.</p>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">About Me</h2>
+          <p class="section-subtitle">A motivated student exploring technology through coursework, projects, and continuous learning.</p>
+        </div>
+      </div>
+      <div class="about-grid">
+        <div class="card">
+          <h3>Personal Bio</h3>
+          <p>Hi, I’m Antony Joshi, a student with a strong interest in technology and innovation. I enjoy learning new tools, solving problems, and working on projects that help me grow personally and professionally. I am motivated by curiosity and a desire to create meaningful solutions.</p>
+          <p>As a Computer Science student, I am focused on gaining practical experience through internships and collaborations while continuing to expand my skills in software development and web technologies.</p>
+        </div>
+        <div class="card">
+          <h3>Education</h3>
+          <div class="info-list">
+            <div class="info-item">
+              <strong>Degree</strong>
+              <span>B.Sc. in Computer Science</span>
+            </div>
+            <div class="info-item">
+              <strong>Institution</strong>
+              <span>GISMA University of Applied Sciences</span>
+            </div>
+            <div class="info-item">
+              <strong>Graduation</strong>
+              <span>Expected 2028</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Skills</h2>
+          <p class="section-subtitle">Core abilities shaped by academic study and hands-on practice in web and software development.</p>
+        </div>
+      </div>
+      <div class="skill-grid">
+        <div class="skill-card">
+          <h4>HTML</h4>
+          <p>Building structured, accessible web pages that form the foundation of modern web experiences.</p>
+        </div>
+        <div class="skill-card">
+          <h4>Python</h4>
+          <p>Developing scripts and programs for problem solving, automation, and software logic.</p>
+        </div>
+        <div class="skill-card">
+          <h4>SQL</h4>
+          <p>Working with relational data, querying databases, and understanding data-driven applications.</p>
+        </div>
+        <div class="skill-card">
+          <h4>Problem Solving</h4>
+          <p>Approaching challenges thoughtfully, breaking them into manageable steps, and continually learning through iteration.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Portfolio</h2>
+          <p class="section-subtitle">Examples of learning-focused work and the types of projects Antony is building toward.</p>
+        </div>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h4>Learning & Practice</h4>
+          <p>Currently working through coursework and hands-on exercises in web development, programming, and data management. This portfolio highlights a foundation in HTML, Python, and SQL while preparing for future project work.</p>
+        </div>
+        <div class="project-card">
+          <h4>Academic Projects</h4>
+          <p>Key academic activities include software development assignments, programming challenges, and practical tasks that strengthen technical skills and prepare for internships.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Contact</h2>
+          <p class="section-subtitle">Reach out for internship opportunities, collaboration, or to discuss future projects.</p>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-box">
+          <h3>Get in touch</h3>
+          <p>If you would like to connect, collaborate, or share an opportunity, send an email and I’ll respond as soon as possible.</p>
+          <div class="contact-details">
+            <div class="contact-detail">
+              <strong>Email</strong>
+              <a href="mailto:antonyjoshi2006@gmail.com" style="color: var(--text); text-decoration: none;">antonyjoshi2006@gmail.com</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-box">
+          <h3>Availability</h3>
+          <p>Open to internship and collaboration opportunities in software development, web development, and technology innovation. Ready to contribute through coursework, personal learning, and future project work.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Designed for Antony Joshi · Computer Science student at GISMA University of Applied Sciences</p>
+    </footer>
+  </div>
+</body>
+</html>
